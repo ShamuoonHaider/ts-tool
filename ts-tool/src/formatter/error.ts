@@ -19,7 +19,6 @@ const extractMessage = (
   messageText: string | ts.DiagnosticMessageChain,
 ): string => {
   if (typeof messageText === "string") return messageText;
-
   let message = messageText.messageText;
   let next = messageText.next?.[0];
   while (next) {
@@ -35,8 +34,8 @@ export const formatDiagnostic = (diagnostic: ts.Diagnostic): string => {
   if (!diagnostic.file || diagnostic.start === undefined) {
     return (
       chalk.red(`error`) +
-      chalk.white(`Ts${diagnostic.code}]`) +
-      chalk.white(`: ${extractMessage(diagnostic.messageText)} \n`)
+      chalk.white(`[TS${diagnostic.code}]`) +
+      chalk.white(`: ${extractMessage(diagnostic.messageText)}\n`)
     );
   }
 
@@ -53,16 +52,20 @@ export const formatDiagnostic = (diagnostic: ts.Diagnostic): string => {
   const lineNumStr = String(lineNum);
   const padding = " ".repeat(lineNumStr.length);
 
-  lines.push(chalk.red(`error`) + chalk.white(`[Ts${diagnostic.code}]`)) +
-    chalk.whiteBright(message);
-
+ 
   lines.push(
-    chalk.cyan(` --> `) + chalk.white(`${filePath}:${lineNum}:${colNum}`),
+    chalk.red(`error`) +
+      chalk.white(`[TS${diagnostic.code}]: `) +
+      chalk.whiteBright(message),
   );
 
-  lines.push(chalk.cyan(`{padding} |`));
+  lines.push(
+    chalk.cyan(`  --> `) + chalk.white(`${filePath}:${lineNum}:${colNum}`),
+  );
+  lines.push(chalk.cyan(`${padding} |`));
 
-  lines.push(chalk.cyan(`{${lineNumStr} |`) + chalk.white(` ${sourceLine}`));
+  // ✅ fixed - removed the literal {
+  lines.push(chalk.cyan(`${lineNumStr} |`) + chalk.white(` ${sourceLine}`));
 
   lines.push(chalk.cyan(`${padding} |`) + chalk.red(` ${pointer}`));
   lines.push("");
@@ -78,8 +81,8 @@ export const formatDiagnostics = (
 
   const summary =
     errorCount === 0
-      ? chalk.green("\n No errors found!")
-      : chalk.red(` Found ${errorCount} error${errorCount > 1 ? "s" : ""}`);
+      ? chalk.green("✔ No errors found!")
+      : chalk.red(`✖ Found ${errorCount} error${errorCount > 1 ? "s" : ""}`);
 
   return `${output}\n${summary}`;
 };
