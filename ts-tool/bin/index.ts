@@ -3,6 +3,7 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import logger from "../src/utils/logger.js";
+import check from "../src/commands/check.js";
 
 const log = logger("cli");
 const program = new Command();
@@ -21,9 +22,8 @@ program
   .option("-w, --watch", "Watch for changes")
   .action(async (file, options) => {
     log.debug("check command called with file: %O", file);
-    log.debug("options: %O", options);
     // will be implemented in check.ts
-    log.highlight("check command coming soon...");
+    await check(file, options);
   });
 
 program
