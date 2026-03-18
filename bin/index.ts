@@ -11,7 +11,7 @@ const log = logger("cli");
 const program = new Command();
 
 program
-  .name("ts-tool")
+  .name("ts-blame")
   .description(
     chalk.cyanBright("A TypeScript Cli tool with rust-like error output"),
   )
