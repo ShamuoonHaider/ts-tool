@@ -162,28 +162,28 @@ export const formatRuntimeError = (error: Error): string => {
 
   lines.push(
     chalk.red.bold(`error`) +
-      chalk.yellow(`[${code}]:`) +
+      chalk.yellow(`[${code}]: `) +
       chalk.white.bold(error.message),
   );
 
   if (db && host) {
     lines.push(chalk.cyan(`  --> `) + chalk.blueBright(`${db} @ ${host}`));
   } else if (error.stack) {
-    const stackline = error.stack.split("\n")[1]?.trim() || "";
-    lines.push(chalk.cyan(`  --> `) + chalk.blueBright(stackline));
+    const stackLine = error.stack.split("\n")[1]?.trim() || "";
+    lines.push(chalk.cyan(`  --> `) + chalk.blueBright(stackLine));
   }
 
-  lines.push(chalk.cyan(`  |`));
+  lines.push(chalk.cyan(`   |`));
 
   suggestions.forEach((suggestion, i) => {
     if (i === 0) {
-      lines.push(chalk.cyan(`  |`) + chalk.dim(`└─ ${suggestion}`));
+      lines.push(chalk.cyan(`   | `) + chalk.dim(`└─ ${suggestion}`));
     } else {
-      lines.push(chalk.cyan(`  |`) + chalk.dim(`   ${suggestion}`));
+      lines.push(chalk.cyan(`   | `) + chalk.dim(`   └─ ${suggestion}`));
     }
   });
 
-  lines.push(chalk.cyan(`  |`));
+  lines.push(chalk.cyan(`   |`));
   lines.push("");
 
   return lines.join("\n");

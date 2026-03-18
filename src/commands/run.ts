@@ -114,10 +114,10 @@ const parseStdrrError = (stderr: string): string | null => {
           else if (port === "6379") error.name = "ReplyError";
         }
 
-        const stackMatch = stderr.match(/at .+ \((.+):(\d+):(\d+)\)/);
-
+        // extract stack trace location
+        const stackMatch = stderr.match(/at (.+:\d+:\d+)/); // 👈 simpler pattern
         if (stackMatch) {
-          error.stack = `${name}: ${error.message}\n    at${stackMatch[0]}`;
+          error.stack = `${name}: ${error.message}\n    at ${stackMatch[1]}`;
         }
 
         return formatRuntimeError(error);

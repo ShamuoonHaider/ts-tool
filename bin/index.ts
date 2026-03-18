@@ -4,6 +4,7 @@ import { Command } from "commander";
 import chalk from "chalk";
 import logger from "../src/utils/logger.js";
 import check from "../src/commands/check.js";
+import run from "../src/commands/run.js";
 
 const log = logger("cli");
 const program = new Command();
@@ -28,12 +29,11 @@ program
 
 program
   .command("run <file>")
-  .description("Run a ts file")
+  .description("Run a TypeScript file")
   .option("-w, --watch", "Watch for changes")
   .action(async (file, options) => {
     log.debug("run command called with file: %0", file);
-    log.debug("options: %0", options);
-    log.highlight("run command comming soon...");
+    await run(file, options);
   });
 
 program
