@@ -4,7 +4,7 @@
   "description": "A typescript tool with Rust-lik error output",
   "type": "module",
   "bin": {
-    "ts-blame": "./bin/index.ts"
+    "ts-blame": "./dist/bin/index.js"
   },
   "scripts": {
     "dev": "FORCE_COLOR=3 tsx bin/index.ts",
@@ -17,6 +17,13 @@
     "rust",
     "cli",
     "type-checker"
+  ],
+  "files": [
+    "bin",
+    "src/commands",
+    "src/formatter",
+    "src/utils",
+    "dist"
   ],
   "author": "ShamuoonHaider",
   "license": "MIT",
