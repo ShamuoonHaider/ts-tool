@@ -1,0 +1,54 @@
+{
+  "name": "ts-blame",
+  "version": "0.1.0",
+  "description": "A typescript tool with Rust-lik error output",
+  "type": "module",
+  "bin": {
+    "ts-blame": "./dist/bin/index.js"
+  },
+  "scripts": {
+    "dev": "FORCE_COLOR=3 tsx bin/index.ts",
+    "build": "tsc",
+    "start": "FORCE_COLOR=3 node dist/bin/index.js"
+  },
+  "keywords": [
+    "typescript",
+    "tool",
+    "rust",
+    "cli",
+    "type-checker"
+  ],
+  "files": [
+    "bin",
+    "src/commands",
+    "src/formatter",
+    "src/utils",
+    "dist"
+  ],
+  "author": "ShamuoonHaider",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ShamuoonHaider/ts-blame.git"
+  },
+  "homepage": "https://github.com/ShamuoonHaider/ts-blame#readme",
+  "bugs": {
+    "url": "https://github.com/ShamuoonHaider/ts-blame/issues"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "dependenc,ies": {
+    "chalk": "^5.6.2",
+    "chokidar": "^5.0.0",
+    "commander": "^14.0.3",
+    "debug": "^4.4.3",
+    "inquirer": "^13.3.2",
+    "ora": "^9.3.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/node": "^25.5.0",
+    "@types/pg": "^8.18.0",
+    "tsx": "^4.21.0"
+  }
+}

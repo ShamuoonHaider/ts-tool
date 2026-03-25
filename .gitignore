@@ -1,1 +1,22 @@
+<<<<<<< HEAD
 node_modules/
+=======
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# test files
+src/test/
+
+# environment
+.env
+.env.local
+
+# logs
+*.log
+
+# os
+.DS_Store
+>>>>>>> 27713e058c85529f8149e945973e23e94773d648
